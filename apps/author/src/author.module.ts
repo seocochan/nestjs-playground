@@ -1,10 +1,16 @@
 import { Module } from '@nestjs/common';
-import { AuthorController } from './author.controller';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
+import { AuthorResolver } from './author.resolver';
 import { AuthorService } from './author.service';
 
 @Module({
-  imports: [],
-  controllers: [AuthorController],
-  providers: [AuthorService],
+  imports: [
+    GraphQLModule.forRoot<ApolloFederationDriverConfig>({
+      driver: ApolloFederationDriver,
+      typePaths: ['**/author.graphql'],
+    }),
+  ],
+  providers: [AuthorResolver, AuthorService],
 })
 export class AuthorModule {}
