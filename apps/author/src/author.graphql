@@ -4,5 +4,5 @@ type Author @key(fields: "id") {
 }
 
 type Query {
-    getAuthor(id: ID!): Author
+    getAuthor(id: ID!): Author!
 }
