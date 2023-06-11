@@ -13,6 +13,7 @@
     "start:debug": "concurrently \"nest start --debug --watch api\" \"nest start --debug --watch post\" \"nest start --debug --watch author\"",
     "start:prod": "node dist/apps/api/main",
     "graphql:codegen": "ts-node graphql/generate-typings.ts",
+    "proto:codegen": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=proto/__generated__ --ts_proto_opt=nestJs=true,env=node,esModuleInterop=true,addGrpcMetadata=true proto/*.proto",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -25,6 +26,8 @@
     "@apollo/gateway": "^2.4.7",
     "@apollo/server": "^4.7.3",
     "@apollo/subgraph": "^2.4.7",
+    "@grpc/grpc-js": "^1.8.15",
+    "@grpc/proto-loader": "^0.7.7",
     "@nestjs/apollo": "^11.0.6",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
@@ -35,8 +38,7 @@
     "class-validator": "^0.14.0",
     "graphql": "^16.6.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0",
-    "ts-morph": "^18.0.0"
+    "rxjs": "^7.2.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
@@ -58,7 +60,9 @@
     "supertest": "^6.1.3",
     "ts-jest": "29.1.0",
     "ts-loader": "^9.2.3",
+    "ts-morph": "^18.0.0",
     "ts-node": "^10.0.0",
+    "ts-proto": "^1.148.2",
     "tsconfig-paths": "4.2.0",
     "typescript": "^5.0.0"
   },

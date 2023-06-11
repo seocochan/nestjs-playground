@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package post;
+
+service PostService {
+  rpc FindOne (PostById) returns (Post) {}
+}
+
+message PostById {
+  string id = 1;
+}
+
+message Post {
+  string id = 1;
+  string title = 2;
+  string body = 3;
+  string authorId = 4;
+}
