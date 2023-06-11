@@ -1,3 +1,4 @@
+import * as process from 'process';
 import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -9,7 +10,7 @@ import { PostService } from './post.service';
   imports: [
     GraphQLModule.forRoot<ApolloFederationDriverConfig>({
       driver: ApolloFederationDriver,
-      typePaths: [join(__dirname, 'post.graphql')],
+      typePaths: [join(process.cwd(), 'graphql/post.graphql')],
     }),
   ],
   providers: [PostResolver, PostService],
