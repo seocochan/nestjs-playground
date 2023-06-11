@@ -1,3 +1,4 @@
+import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
@@ -8,7 +9,7 @@ import { AuthorService } from './author.service';
   imports: [
     GraphQLModule.forRoot<ApolloFederationDriverConfig>({
       driver: ApolloFederationDriver,
-      typePaths: ['**/author.graphql'],
+      typePaths: [join(__dirname, 'author.graphql')],
     }),
   ],
   providers: [AuthorResolver, AuthorService],
