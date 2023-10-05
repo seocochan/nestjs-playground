@@ -6,7 +6,10 @@
     "deleteOutDir": true,
     "webpack": true,
     "tsConfigPath": "apps/api/tsconfig.app.json",
-    "assets": ["**/*.graphql" ,"**/*.proto"],
+    "assets": [
+      "**/*.graphql",
+      "**/*.proto"
+    ],
     "watchAssets": true
   },
   "monorepo": true,
@@ -37,6 +40,15 @@
       "sourceRoot": "apps/author/src",
       "compilerOptions": {
         "tsConfigPath": "apps/author/tsconfig.app.json"
+      }
+    },
+    "batch": {
+      "type": "application",
+      "root": "apps/batch",
+      "entryFile": "main",
+      "sourceRoot": "apps/batch/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/batch/tsconfig.app.json"
       }
     }
   }
