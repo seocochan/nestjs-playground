@@ -33,7 +33,7 @@ data "aws_subnets" "all_default_subnets" {
 }
 
 resource "aws_security_group" "batch" {
-  name        = "batch"
+  name        = "tf_batch"
   vpc_id      = data.aws_vpc.default.id
   description = "batch VPC security group"
 
@@ -48,7 +48,7 @@ resource "aws_security_group" "batch" {
 }
 
 resource "aws_iam_role" "aws_batch_service_role" {
-  name = "aws_batch_service_role"
+  name = "tf_aws_batch_service_role"
   assume_role_policy = jsonencode({
     Version : "2012-10-17",
     Statement : [{
@@ -67,7 +67,7 @@ resource "aws_iam_role_policy_attachment" "aws_batch_service_role" {
 }
 
 resource "aws_iam_role" "aws_ecs_task_execution_role" {
-  name = "ecs_task_execution_role"
+  name = "tf_ecs_task_execution_role"
   assume_role_policy = jsonencode({
     Version : "2012-10-17",
     Statement : [
@@ -89,7 +89,7 @@ resource "aws_iam_role_policy_attachment" "aws_ecs_task_execution_role" {
 }
 
 resource "aws_batch_compute_environment" "batch" {
-  compute_environment_name = "example_compute_env"
+  compute_environment_name = "tf_example_compute_env"
 
   compute_resources {
     max_vcpus = 256
@@ -107,7 +107,7 @@ resource "aws_batch_compute_environment" "batch" {
 }
 
 resource "aws_batch_job_queue" "batch" {
-  name     = "example_job_queue"
+  name     = "tf_example_job_queue"
   state    = "ENABLED"
   priority = "0"
   compute_environments = [
@@ -116,7 +116,7 @@ resource "aws_batch_job_queue" "batch" {
 }
 
 resource "aws_batch_job_definition" "batch" {
-  name = "example_job_definition_temp" # TODO: 원복
+  name = "tf_example_job_definition"
   type = "container"
   platform_capabilities = [
     "FARGATE",
